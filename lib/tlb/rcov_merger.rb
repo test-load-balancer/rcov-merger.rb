@@ -25,7 +25,7 @@ module Tlb
 
     def merge_reports formatter
       Dir.foreach(source_dir_path) do |file|
-        file_name = source_dir_path + "/" + file
+        file_name = File.join(source_dir_path, file)
         next unless File.file?(file_name)
         # analyzer is an object of type Rcov::CodeCoverageAnalyzer
         analyzer = Zlib::GzipReader.open(file_name) {|gz| Marshal.load(gz)}[:coverage]
